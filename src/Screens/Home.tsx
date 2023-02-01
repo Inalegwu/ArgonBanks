@@ -37,20 +37,24 @@ interface CardListProps {
 
 const actions = [
   {
+    action: "Pay",
     name: "pay",
     icon_name: "credit-card",
   },
   {
+    action: "Send",
     name: "send money",
     icon_name: "credit-card",
   },
   {
+    action: "Recieve",
     name: "receive money",
     icon_name: "credit-card",
   },
   {
-    name: "split",
-    icon_name: "credit-card",
+    action: "Airtime",
+    name: "buy airtime",
+    icon_name: "phone",
   },
 ];
 
@@ -72,10 +76,10 @@ export default function Home({ navigation }: any) {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Box w="full" h="full" bg="gray.200">
         <Box w="full" h="3/6" bg="gray.800">
-          <HStack w="full" mt={10} p={4}>
+          <HStack w="full" mt={8} p={4}>
             <VStack w="5/6">
               <Text fontSize="md" color="gray.400">
-                Good Afternoon 😁
+                What's Good 😎
               </Text>
               <Heading mt="1" fontSize="2xl" color="white" fontWeight="bold">
                 Inalegwu
@@ -96,7 +100,7 @@ export default function Home({ navigation }: any) {
                 <Box
                   key={index}
                   h="40"
-                  w="96"
+                  w="80"
                   ml={2}
                   mr={2}
                   bg={index % 2 === 0 ? "orange.300" : "blue.300"}
@@ -123,12 +127,7 @@ export default function Home({ navigation }: any) {
               );
             }}
           />
-          <HStack
-            justifyContent="space-evenly"
-            alignItems="center"
-            mb={7}
-            h="1/6"
-          >
+          <HStack justifyContent="space-evenly" alignItems="center" mb={4}>
             {actions.map((item, index) => {
               return (
                 <VStack
@@ -143,6 +142,9 @@ export default function Home({ navigation }: any) {
                     bg="gray.500"
                     _pressed={{ bg: "gray.400" }}
                     rounded="full"
+                    onPress={() => {
+                      navigation.navigate(item.action);
+                    }}
                     justifyContent="center"
                     alignItems="center"
                   >
@@ -152,7 +154,7 @@ export default function Home({ navigation }: any) {
                       color="#fff"
                     />
                   </Pressable>
-                  <Text color="white" fontWeight="bold" fontSize="xs" mt={3}>
+                  <Text color="white" fontWeight="medium" fontSize="xs" mt={3}>
                     {item.name.toLocaleUpperCase()}
                   </Text>
                 </VStack>
@@ -201,15 +203,15 @@ export default function Home({ navigation }: any) {
                     <HStack w="5/6" space={1} alignItems="center">
                       <Box w="12" h="12" rounded="full" bg="gray.200"></Box>
                       <VStack space={1} p={1} mt={1}>
-                        <Heading fontSize="md" color="black">
+                        <Heading fontSize="sm" fontWeight="bold" color="black">
                           {item.title}
                         </Heading>
-                        <Text fontSize="sm" color="gray.400">
+                        <Text fontSize="xs" color="gray.400">
                           {item.date}
                         </Text>
                       </VStack>
                     </HStack>
-                    <VStack w="1/6" alignItems="flex-end">
+                    <VStack w="1/6" alignItems="flex-end" mt={1}>
                       <Text
                         fontSize="sm"
                         fontWeight="bold"
@@ -218,8 +220,8 @@ export default function Home({ navigation }: any) {
                         }
                       >
                         {item.isDeduction === true
-                          ? "-N" + item.amount
-                          : "N" + item.amount}
+                          ? "-₦" + item.amount
+                          : "₦" + item.amount}
                       </Text>
                       <Text fontSize="sm" color="gray.400">
                         {item.time}
@@ -272,8 +274,12 @@ export default function Home({ navigation }: any) {
                 </Text>
               </Box>
             </VStack>
-            <Box w="full" mt={10} h="full" bg="white">
-              <Heading textAlign="center">Nothing To See Here</Heading>
+            <Box w="full" h="full">
+              <VStack w="full" h="3/6" p={5}>
+                <Heading color="red.600" fontSize="3xl">
+                  ₦{transaction.amount}
+                </Heading>
+              </VStack>
             </Box>
           </Box>
         </BottomSheet>

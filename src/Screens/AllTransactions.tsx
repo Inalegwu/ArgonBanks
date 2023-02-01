@@ -5,13 +5,22 @@ import { Feather } from "@expo/vector-icons";
 export default function AllTransactions({ navigation }: any) {
   return (
     <Box w="full" h="full" bg="white">
-      <HStack w="full" mt={10} p={3} justifyContent="space-between">
+      <HStack
+        w="full"
+        mt={8}
+        p={3}
+        justifyContent="space-between"
+        alignItems="center"
+      >
         <Pressable
+          p={2}
+          rounded="md"
+          bg="gray.700"
           onPress={() => {
             navigation.goBack();
           }}
         >
-          <Icon as={<Feather />} name="arrow-left" size={5} color="black" />
+          <Icon as={<Feather />} name="arrow-left" size={5} color="white" />
         </Pressable>
         <Box w="4/6">
           <Heading fontWeight="bold" fontSize="xl">
