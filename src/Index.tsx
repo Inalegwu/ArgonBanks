@@ -1,17 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "./Screens/Home";
-import Pin from "./Screens/Pin";
-import ForgotPin from "./Screens/ForgotPin";
-import CreateAccount from "./Screens/CreateAccount";
-import AllTransactions from "./Screens/AllTransactions";
-import PayScreen from "./Screens/PayScreen";
-import SendScreen from "./Screens/SendScreen";
-import RecieveScreen from "./Screens/RecieveScreen";
-import AirtimeScreen from "./Screens/AirtimeScreen";
+import {Pin,Home,ForgotPin,CreateAccount,AllTransactions,PayScreen,SendScreen,RecieveScreen,AirtimeScreen} from "./Screens"
+import {MainStackParamList} from "./utils/types"
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<MainStackParamList>();
 
 export default function Index() {
   return (
@@ -31,5 +23,3 @@ export default function Index() {
     </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({});

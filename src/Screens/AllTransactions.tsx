@@ -1,8 +1,17 @@
 import { Box, HStack, Icon, Pressable, Text, Heading } from "native-base";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
+import { MainStackParamList } from "../utils/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export default function AllTransactions({ navigation }: any) {
+type AllScreenNavigatorProp=NativeStackNavigationProp<MainStackParamList,"AllTransactions">
+
+
+type Props={
+  navigation:AllScreenNavigatorProp
+}
+
+export default function AllTransactions({ navigation }: Props) {
   return (
     <Box w="full" h="full" bg="white">
       <HStack
@@ -15,43 +24,17 @@ export default function AllTransactions({ navigation }: any) {
         <Pressable
           p={2}
           rounded="md"
-          bg="gray.700"
+          bg="blue.300"
           onPress={() => {
             navigation.goBack();
           }}
         >
-          <Icon as={<Feather />} name="arrow-left" size={5} color="white" />
+          <Feather name="chevron-left" size={17} color="#fff"/>
         </Pressable>
-        <Box w="4/6">
-          <Heading fontWeight="bold" fontSize="xl">
+        <Box flex={1} alignItems="center" alignContent="center">
+          <Heading color="blueGray.900" fontWeight="bold" fontSize="2xl">
             Transactions
           </Heading>
-        </Box>
-      </HStack>
-      <HStack
-        w="5/6"
-        justifyContent="space-evenly"
-        bg="gray.300"
-        p={2}
-        rounded="full"
-        m="auto"
-      >
-        <Box h="full" rounded="full" p={3}>
-          <Text textAlign="center">1W</Text>
-        </Box>
-        <Box h="full" rounded="full" p={3}>
-          <Text textAlign="center">1M</Text>
-        </Box>
-        <Box bg="blue.800" h="full" rounded="full" p={3}>
-          <Text textAlign="center" color="white">
-            3M
-          </Text>
-        </Box>
-        <Box h="full" rounded="full" p={3}>
-          <Text textAlign="center">6M</Text>
-        </Box>
-        <Box h="full" rounded="full" p={3}>
-          <Text textAlign="center">ALL</Text>
         </Box>
       </HStack>
     </Box>

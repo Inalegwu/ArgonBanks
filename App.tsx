@@ -1,3 +1,4 @@
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { NativeBaseProvider } from "native-base";
@@ -8,6 +9,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
+    <StatusBar style="auto" animate={true}/>
         <Index />
       </NativeBaseProvider>
     </NavigationContainer>

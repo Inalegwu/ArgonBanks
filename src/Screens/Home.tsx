@@ -7,7 +7,6 @@ import {
   HStack,
   Icon,
   Pressable,
-  ScrollView,
   Text,
   VStack,
 } from "native-base";
@@ -18,12 +17,11 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
   Feather,
   Ionicons,
-  MaterialIcons,
-  MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { Card, Transaction } from "../utils/types";
+import { Card, MainStackParamList, Transaction } from "../utils/types";
 import TRANSACTION_HISTORY from "../data/transactions";
 import CARDS from "../data/cards";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface FlatListProps {
   item: Transaction;
@@ -58,7 +56,13 @@ const actions = [
   },
 ];
 
-export default function Home({ navigation }: any) {
+type HomeNavigationProp=NativeStackNavigationProp<MainStackParamList,"Home">
+
+type Props={
+  navigation:HomeNavigationProp
+}
+
+export default function Home({ navigation }: Props) {
   const ref = useRef<BottomSheetRefProps>(null);
   const [transaction, setTransaction] = useAtom(transactionAtom);
 
@@ -143,7 +147,7 @@ export default function Home({ navigation }: any) {
                     _pressed={{ bg: "gray.400" }}
                     rounded="full"
                     onPress={() => {
-                      navigation.navigate(item.action);
+                      navigation.navigate(item.action)
                     }}
                     justifyContent="center"
                     alignItems="center"

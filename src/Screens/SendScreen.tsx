@@ -11,8 +11,16 @@ import {
 } from "native-base";
 import { Feather } from "@expo/vector-icons";
 import { Platform } from "react-native";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import { MainStackParamList } from "../utils/types";
 
-export default function SendScreen({ navigation }: any) {
+type SendScreenNavigatorProps=NativeStackNavigationProp<MainStackParamList,"Send">
+
+type Props={
+  navigation:SendScreenNavigatorProps
+}
+
+export default function SendScreen({ navigation }: Props) {
   return (
     <KeyboardAvoidingView
       w="full"

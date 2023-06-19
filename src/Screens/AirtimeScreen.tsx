@@ -1,24 +1,41 @@
 import { Box, Pressable, HStack, Select, Input, Text } from "native-base";
-import React, { useState } from "react";
+import React from "react";
 import { Feather } from "@expo/vector-icons";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack/lib/typescript/src/types";
+import { MainStackParamList } from "../utils/types";
 
-export default function AirtimeScreen({ navigation }: any) {
-  const [provider, setProvider] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  console.log(phoneNumber);
-  return (
+type AirtimeScreenNavigatorProp=NativeStackNavigationProp<MainStackParamList,"Airtime">
+
+
+type Props={
+  navigation:AirtimeScreenNavigatorProp
+}
+
+const PROVIDERS=["AIRTEL","MTN","GLO","9MOBILE","SPECTRANET"]
+
+export default function AirtimeScreen({ navigation }: Props) {
+  const [provider, setProvider] = React.useState<string>("");
+  const [phoneNumber, setPhoneNumber] = React.useState<string>("");
+
+  
+  const handleBuyAirtime=React.useCallback(()=>{
+    console.log(`Buying ${provider} airtime for ${phoneNumber}`)
+  },[phoneNumber,provider])
+  
+  
+   return (
     <Box w="full" h="full" bg="white">
       <HStack w="full" p={3} mt={10}>
         <Pressable
           onPress={() => {
             navigation.goBack();
           }}
-          p={3}
-          bg="gray.600"
+          p={2}
+          bg="blue.300"
           _pressed={{ bg: "gray.400" }}
           rounded="md"
         >
-          <Feather name="arrow-left" size={20} color="#fff" />
+          <Feather name="arrow-left" size={17} color="#fff" />
         </Pressable>
       </HStack>
       <Box w="full" h="full">
@@ -35,9 +52,7 @@ export default function AirtimeScreen({ navigation }: any) {
           rounded="lg"
           onValueChange={(itemValue) => setProvider(itemValue)}
         >
-          <Select.Item label="Airtel" value="airtel" />
-          <Select.Item label="MTN" value="mtn" />
-          <Select.Item label="GLO" value="glo" />
+          {PROVIDERS.map((item,index)=>(<Select.Item bg={provider===item?"blue.300":"white"} fontWeight="bold" fontSize={15} rounded="md" p={3} alignItems="center" color={provider===item?"white":"$gray.500"} key={index} label={item} value={item}/>))}
         </Select>
         <Input
           mr={3}
@@ -58,9 +73,10 @@ export default function AirtimeScreen({ navigation }: any) {
           mr={3}
           mt={10}
           rounded="full"
-          bg="blue.800"
+          bg="blue.300"
           justifyContent="center"
           alignItems="center"
+          onPress={handleBuyAirtime}
         >
           <Text fontWeight="bold" color="white">
             Buy Airtime

@@ -14,3 +14,15 @@ export interface Card {
   card_amount: number;
   holder_name: string;
 }
+
+export type MainStackParamList={
+  Login:undefined;
+  Home:undefined;
+  ForgotPin:undefined;
+  CreateAccount:undefined;
+  AllTransactions:undefined;
+  Pay:undefined;
+  Send:undefined;
+  Recieve:undefined;
+  Airtime:undefined;
+}
